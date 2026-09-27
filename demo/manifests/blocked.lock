@@ -1,0 +1,3 @@
+# lock-file v1
+com.knownbad:malware-lib:9.9.9:RUNTIME
+org.example:broken:1.2:COMPILE

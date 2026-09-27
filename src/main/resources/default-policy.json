@@ -1,0 +1,59 @@
+{
+  "policyVersion": "default-policy-2026.09.28",
+  "defaultVerdict": "DENY",
+  "severityThreshold": "HIGH",
+  "rules": [
+    {
+      "action": "DENY",
+      "name": "com.knownbad:malware-lib",
+      "versionPattern": "*",
+      "scopes": [],
+      "reasonText": "known malicious package"
+    },
+    {
+      "action": "DENY",
+      "name": "com.acme:legacy-log4j",
+      "versionPattern": "1.*",
+      "scopes": ["COMPILE", "RUNTIME"],
+      "reasonText": "unsupported logging facade on production scopes"
+    },
+    {
+      "action": "ALLOW",
+      "name": "org.example:safe-*",
+      "versionPattern": "*",
+      "scopes": []
+    },
+    {
+      "action": "ALLOW",
+      "name": "com.acme:legacy-log4j",
+      "versionPattern": "1.*",
+      "scopes": ["TEST"],
+      "reasonText": "test-only legacy facade tolerated"
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "EXC-1001",
+      "name": "org.example:risky-cache",
+      "versionPattern": "2.3.*",
+      "scopes": ["RUNTIME"],
+      "expiresAt": "2030-12-31T23:59:59Z",
+      "approver": "release-manager@local",
+      "justification": "documented migration plan, risk accepted until 3.0"
+    },
+    {
+      "id": "EXC-1002",
+      "name": "org.example:expired-shim",
+      "versionPattern": "*",
+      "scopes": [],
+      "expiresAt": "2025-01-01T00:00:00Z",
+      "approver": "release-manager@local",
+      "justification": "temporary shim, exception already expired"
+    }
+  ],
+  "advisorySeverity": {
+    "org.example:risky-cache": "HIGH",
+    "org.example:expired-shim": "MODERATE",
+    "com.knownbad:malware-lib": "CRITICAL"
+  }
+}

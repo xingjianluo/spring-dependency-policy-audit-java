@@ -1,0 +1,6 @@
+{
+  "manifestType": "manifest-json",
+  "dependencies": [
+    {"group":"org.example","name":"risky-cache","version":"2.3.7","scope":"RUNTIME"}
+  ]
+}

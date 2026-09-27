@@ -1,0 +1,6 @@
+{
+  "manifestType": "manifest-json",
+  "dependencies": [
+    {"group":"org.example","name":"safe-core","version":"1.4.2","scope":"COMPILE"}
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "policyVersion": "demo-policy-v1",
+  "defaultVerdict": "DENY",
+  "severityThreshold": "HIGH",
+  "rules": [
+    {"action":"DENY","name":"com.knownbad:malware-lib","versionPattern":"*","reasonText":"known malicious package"},
+    {"action":"ALLOW","name":"org.example:safe-*","versionPattern":"*","scopes":[]}
+  ],
+  "exceptions": [
+    {"id":"DEMO-EXC-1","name":"org.example:risky-cache","versionPattern":"2.3.*",
+     "scopes":["RUNTIME"],"expiresAt":"2030-01-01T00:00:00Z",
+     "approver":"release-manager@local","justification":"migration accepted"}
+  ],
+  "advisorySeverity": {"org.example:risky-cache":"CRITICAL"}
+}

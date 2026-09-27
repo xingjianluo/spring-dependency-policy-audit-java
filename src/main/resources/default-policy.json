@@ -1,0 +1,60 @@
+{
+  "policyVersion": "default-1.0.0",
+  "maxSeverity": "HIGH",
+  "enforcedScopes": ["compile", "runtime"],
+  "rules": [
+    {
+      "id": "RULE-DENY-LIB-BADLIB",
+      "action": "deny",
+      "ecosystem": "maven",
+      "groupPattern": "com.example.banned",
+      "namePattern": "badlib",
+      "versionRange": "*",
+      "scopes": ["compile", "runtime"],
+      "reason": "badlib 已被禁止进入发布制品"
+    },
+    {
+      "id": "RULE-ALLOW-INTERNAL",
+      "action": "allow",
+      "ecosystem": "maven",
+      "groupPattern": "com.acme.internal",
+      "namePattern": "",
+      "versionRange": "*",
+      "scopes": ["compile", "runtime"],
+      "reason": "内部构件统一允许"
+    }
+  ],
+  "advisories": [
+    {
+      "id": "ADV-CVE-DEMO-0001",
+      "ecosystem": "maven",
+      "group": "com.example.vuln",
+      "name": "vuln-core",
+      "versionRange": "[1.0.0,2.0.0)",
+      "severity": "CRITICAL",
+      "reason": "演示用严重漏洞：远程代码执行"
+    },
+    {
+      "id": "ADV-CVE-DEMO-0002",
+      "ecosystem": "npm",
+      "group": "",
+      "name": "vuln-pkg",
+      "versionRange": "<3.0.0",
+      "severity": "MODERATE",
+      "reason": "演示用中等风险问题"
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "EXC-DEMO-EXPIRED",
+      "ecosystem": "maven",
+      "group": "com.example.vuln",
+      "name": "vuln-core",
+      "versionRange": "[1.0.0,2.0.0)",
+      "scopes": ["compile", "runtime"],
+      "expiresOn": "2025-01-01",
+      "requestedBy": "demo-user",
+      "justification": "演示：已过期例外，必须失效"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "policyVersion": "example-1.0.0",
+  "maxSeverity": "HIGH",
+  "enforcedScopes": ["compile", "runtime"],
+  "rules": [
+    {
+      "id": "RULE-DENY-GPL-LEGACY",
+      "action": "deny",
+      "ecosystem": "maven",
+      "groupPattern": "com.legacy.gpl",
+      "namePattern": "",
+      "versionRange": "*",
+      "scopes": ["compile", "runtime"],
+      "reason": "GPL 组件禁止进入闭源发布制品"
+    },
+    {
+      "id": "RULE-ALLOW-COMPANY-INTERNAL",
+      "action": "allow",
+      "ecosystem": "maven",
+      "groupPattern": "com.company.internal",
+      "namePattern": "",
+      "versionRange": "*",
+      "scopes": ["compile", "runtime"],
+      "reason": "公司内部构件经安全评审后允许"
+    }
+  ],
+  "advisories": [
+    {
+      "id": "ADV-2026-0001",
+      "ecosystem": "maven",
+      "group": "com.example.vuln",
+      "name": "vuln-core",
+      "versionRange": "[1.0.0,2.0.0)",
+      "severity": "CRITICAL",
+      "reason": "远程代码执行，必须升级到 2.0.0+"
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "EXC-RELEASE-42",
+      "ecosystem": "maven",
+      "group": "com.example.medium",
+      "name": "medium-risk",
+      "versionRange": "*",
+      "scopes": ["runtime"],
+      "expiresOn": "2026-12-31",
+      "requestedBy": "release-manager@company.local",
+      "justification": "版本 42 发布窗口内临时豁免，到期自动失效"
+    }
+  ]
+}

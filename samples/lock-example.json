@@ -1,0 +1,7 @@
+{
+  "ecosystem": "npm",
+  "locked": [
+    {"name": "left-pad", "version": "1.3.0", "scope": "runtime"},
+    {"name": "vuln-pkg", "version": "2.5.0", "scope": "runtime"}
+  ]
+}
